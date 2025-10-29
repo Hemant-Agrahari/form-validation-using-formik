@@ -1,7 +1,14 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import Select from 'react-select';
+import {
+  TextInput,
+  SelectInput,
+  RadioGroup,
+  CheckboxGroup,
+  MultiSelect,
+  DateInput
+} from './FormFields';
 import './UserForm.css';
 
 const UserForm = () => {
@@ -47,6 +54,32 @@ const UserForm = () => {
     aadharCardNo: '',
   };
 
+  // Options for dropdown
+  const countryOptions = [
+    { value: 'india', label: 'India' },
+    { value: 'usa', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'canada', label: 'Canada' },
+    { value: 'australia', label: 'Australia' },
+    { value: 'germany', label: 'Germany' },
+  ];
+
+  // Options for radio buttons
+  const genderOptions = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'other', label: 'Other' },
+  ];
+
+  // Options for checkboxes
+  const hobbyOptions = [
+    { value: 'reading', label: 'Reading' },
+    { value: 'traveling', label: 'Traveling' },
+    { value: 'sports', label: 'Sports' },
+    { value: 'music', label: 'Music' },
+    { value: 'gaming', label: 'Gaming' },
+  ];
+
   // Options for multiselect
   const skillOptions = [
     { value: 'javascript', label: 'JavaScript' },
@@ -78,161 +111,95 @@ const UserForm = () => {
         {({ values, setFieldValue, isSubmitting, errors, touched }) => (
           <Form className="user-form">
             {/* First Name */}
-            <div className="form-group">
-              <label htmlFor="firstName">First Name *</label>
-              <Field
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="Enter your first name"
-                className={errors.firstName && touched.firstName ? 'error-field' : ''}
-              />
-              <ErrorMessage name="firstName" component="div" className="error-message" />
-            </div>
+            <TextInput
+              label="First Name"
+              name="firstName"
+              placeholder="Enter your first name"
+              errors={errors.firstName}
+              touched={touched.firstName}
+              required
+            />
 
             {/* Last Name */}
-            <div className="form-group">
-              <label htmlFor="lastName">Last Name *</label>
-              <Field
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Enter your last name"
-                className={errors.lastName && touched.lastName ? 'error-field' : ''}
-              />
-              <ErrorMessage name="lastName" component="div" className="error-message" />
-            </div>
+            <TextInput
+              label="Last Name"
+              name="lastName"
+              placeholder="Enter your last name"
+              errors={errors.lastName}
+              touched={touched.lastName}
+              required
+            />
 
-            {/* Dropdown - Country */}
-            <div className="form-group">
-              <label htmlFor="country">Country *</label>
-              <Field
-                as="select"
-                id="country"
-                name="country"
-                className={errors.country && touched.country ? 'error-field' : ''}
-              >
-                <option value="">Select a country</option>
-                <option value="india">India</option>
-                <option value="usa">United States</option>
-                <option value="uk">United Kingdom</option>
-                <option value="canada">Canada</option>
-                <option value="australia">Australia</option>
-                <option value="germany">Germany</option>
-              </Field>
-              <ErrorMessage name="country" component="div" className="error-message" />
-            </div>
+            {/* Country Dropdown */}
+            <SelectInput
+              label="Country"
+              name="country"
+              options={countryOptions}
+              placeholder="Select a country"
+              errors={errors.country}
+              touched={touched.country}
+              required
+            />
 
-            {/* Radio Button - Gender */}
-            <div className="form-group">
-              <label>Gender *</label>
-              <div className="radio-group">
-                <label className="radio-label">
-                  <Field type="radio" name="gender" value="male" />
-                  Male
-                </label>
-                <label className="radio-label">
-                  <Field type="radio" name="gender" value="female" />
-                  Female
-                </label>
-                <label className="radio-label">
-                  <Field type="radio" name="gender" value="other" />
-                  Other
-                </label>
-              </div>
-              <ErrorMessage name="gender" component="div" className="error-message" />
-            </div>
+            {/* Gender Radio Buttons */}
+            <RadioGroup
+              label="Gender"
+              name="gender"
+              options={genderOptions}
+              required
+            />
 
-            {/* Checkbox - Hobbies */}
-            <div className="form-group">
-              <label>Hobbies *</label>
-              <div className="checkbox-group">
-                <label className="checkbox-label">
-                  <Field type="checkbox" name="hobbies" value="reading" />
-                  Reading
-                </label>
-                <label className="checkbox-label">
-                  <Field type="checkbox" name="hobbies" value="traveling" />
-                  Traveling
-                </label>
-                <label className="checkbox-label">
-                  <Field type="checkbox" name="hobbies" value="sports" />
-                  Sports
-                </label>
-                <label className="checkbox-label">
-                  <Field type="checkbox" name="hobbies" value="music" />
-                  Music
-                </label>
-                <label className="checkbox-label">
-                  <Field type="checkbox" name="hobbies" value="gaming" />
-                  Gaming
-                </label>
-              </div>
-              <ErrorMessage name="hobbies" component="div" className="error-message" />
-            </div>
+            {/* Hobbies Checkboxes */}
+            <CheckboxGroup
+              label="Hobbies"
+              name="hobbies"
+              options={hobbyOptions}
+              required
+            />
 
-            {/* Multiselect - Skills */}
-            <div className="form-group">
-              <label htmlFor="skills">Skills * (Select multiple)</label>
-              <Select
-                id="skills"
-                name="skills"
-                options={skillOptions}
-                isMulti
-                value={skillOptions.filter(option => 
-                  values.skills.includes(option.value)
-                )}
-                onChange={(selectedOptions) => {
-                  const values = selectedOptions 
-                    ? selectedOptions.map(option => option.value)
-                    : [];
-                  setFieldValue('skills', values);
-                }}
-                className={errors.skills && touched.skills ? 'error-field' : ''}
-                placeholder="Select your skills..."
-              />
-              <ErrorMessage name="skills" component="div" className="error-message" />
-            </div>
+            {/* Skills Multiselect */}
+            <MultiSelect
+              label="Skills"
+              name="skills"
+              options={skillOptions}
+              values={values.skills}
+              setFieldValue={setFieldValue}
+              placeholder="Select your skills..."
+              errors={errors.skills}
+              touched={touched.skills}
+              required
+            />
 
             {/* Date of Birth */}
-            <div className="form-group">
-              <label htmlFor="dateOfBirth">Date of Birth *</label>
-              <Field
-                type="date"
-                id="dateOfBirth"
-                name="dateOfBirth"
-                className={errors.dateOfBirth && touched.dateOfBirth ? 'error-field' : ''}
-              />
-              <ErrorMessage name="dateOfBirth" component="div" className="error-message" />
-            </div>
+            <DateInput
+              label="Date of Birth"
+              name="dateOfBirth"
+              errors={errors.dateOfBirth}
+              touched={touched.dateOfBirth}
+              required
+            />
 
             {/* Mobile Number */}
-            <div className="form-group">
-              <label htmlFor="mobileNo">Mobile Number *</label>
-              <Field
-                type="text"
-                id="mobileNo"
-                name="mobileNo"
-                placeholder="Enter 10-digit mobile number"
-                maxLength="10"
-                className={errors.mobileNo && touched.mobileNo ? 'error-field' : ''}
-              />
-              <ErrorMessage name="mobileNo" component="div" className="error-message" />
-            </div>
+            <TextInput
+              label="Mobile Number"
+              name="mobileNo"
+              placeholder="Enter 10-digit mobile number"
+              maxLength="10"
+              errors={errors.mobileNo}
+              touched={touched.mobileNo}
+              required
+            />
 
             {/* Aadhar Card Number */}
-            <div className="form-group">
-              <label htmlFor="aadharCardNo">Aadhar Card Number *</label>
-              <Field
-                type="text"
-                id="aadharCardNo"
-                name="aadharCardNo"
-                placeholder="Enter 12-digit Aadhar number"
-                maxLength="12"
-                className={errors.aadharCardNo && touched.aadharCardNo ? 'error-field' : ''}
-              />
-              <ErrorMessage name="aadharCardNo" component="div" className="error-message" />
-            </div>
+            <TextInput
+              label="Aadhar Card Number"
+              name="aadharCardNo"
+              placeholder="Enter 12-digit Aadhar number"
+              maxLength="12"
+              errors={errors.aadharCardNo}
+              touched={touched.aadharCardNo}
+              required
+            />
 
             {/* Submit Button */}
             <div className="form-group">
@@ -248,4 +215,3 @@ const UserForm = () => {
 };
 
 export default UserForm;
-

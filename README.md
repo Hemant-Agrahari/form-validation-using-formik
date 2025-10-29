@@ -67,14 +67,25 @@ form-validation-using-formik/
 │   └── index.html
 ├── src/
 │   ├── components/
+│   │   ├── FormFields/           # Reusable form components
+│   │   │   ├── index.js
+│   │   │   ├── FormFields.css
+│   │   │   ├── TextInput.js
+│   │   │   ├── SelectInput.js
+│   │   │   ├── RadioGroup.js
+│   │   │   ├── CheckboxGroup.js
+│   │   │   ├── MultiSelect.js
+│   │   │   └── DateInput.js
 │   │   ├── UserForm.js
-│   │   └── UserForm.css
+│   │   ├── UserForm.css
+│   │   └── ExampleContactForm.js # Example using reusable components
 │   ├── App.js
 │   └── index.js
 ├── .babelrc
 ├── webpack.config.js
 ├── package.json
-└── README.md
+├── README.md
+└── README_COMPONENTS.md          # Documentation for reusable components
 ```
 
 ## Form Submission
@@ -84,6 +95,34 @@ On successful form submission:
 - An alert message is displayed
 - All validation errors are cleared
 
+## Reusable Components
+
+This project includes **6 reusable form components** that you can use in any form:
+
+1. **TextInput** - For text and number inputs
+2. **SelectInput** - For dropdown selections
+3. **RadioGroup** - For radio button groups
+4. **CheckboxGroup** - For checkbox groups
+5. **MultiSelect** - For multi-select dropdowns
+6. **DateInput** - For date picker
+
+### Using Reusable Components
+
+```jsx
+import { TextInput, SelectInput, RadioGroup } from './FormFields';
+
+<TextInput
+  label="Name"
+  name="name"
+  placeholder="Enter name"
+  errors={errors.name}
+  touched={touched.name}
+  required
+/>
+```
+
+📖 **See `README_COMPONENTS.md` for complete documentation and examples.**
+
 ## Customization
 
 You can easily customize:
@@ -91,7 +130,8 @@ You can easily customize:
 - Hobby options in checkboxes
 - Skill options in multiselect
 - Validation rules in the Yup schema
-- Styling in UserForm.css
+- Styling in UserForm.css or FormFields.css
+- Create new forms using the reusable components
 
 ## License
 
