@@ -1,7 +1,15 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
-import './FormFields.css';
+import '../../styles/main.css';
 
+/**
+ * 
+ * @param {string} label - The label for the radio group
+ * @param {string} name - The name of the radio group
+ * @param {object[]} options - The options for the radio group
+ * @param {boolean} required - Whether the radio group is required
+ * @returns radio group component with label, name, options and required props
+ */
 const RadioGroup = ({ 
   label, 
   name, 

@@ -5,11 +5,10 @@ import {
   loginSchema,
   loginInitialValues,
 } from '../constants';
-import './UserForm.css';
+import '../styles/main.css';
 
 const LoginForm = () => {
 
-  // Form submit handler
   const handleSubmit = (values, { setSubmitting }) => {
     console.log('Login Data:', values);
     setSubmitting(false);
@@ -18,7 +17,7 @@ const LoginForm = () => {
 
   return (
     <div className="form-container">
-      <h1>Login</h1>
+      <h3>Login</h3>
       <Formik
         initialValues={loginInitialValues}
         validationSchema={loginSchema}

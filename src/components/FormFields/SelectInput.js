@@ -1,6 +1,18 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
-import './FormFields.css';
+import '../../styles/main.css';
+
+/**
+ * 
+ * @param {string} label - The label for the select input
+ * @param {string} name - The name of the select input
+ * @param {object[]} options - The options for the select input
+ * @param {string} placeholder - The placeholder for the select input
+ * @param {object} errors - The errors for the select input
+ * @param {object} touched - Whether the select input has been touched
+ * @param {boolean} required - Whether the select input is required
+ * @returns select input component with label, name, options, placeholder, errors, touched and required props
+ */
 
 const SelectInput = ({ 
   label, 

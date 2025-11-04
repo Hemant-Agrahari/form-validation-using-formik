@@ -17,9 +17,9 @@ import {
   HOBBY_OPTIONS,
   SKILL_OPTIONS,
 } from "../constants";
-import "./UserForm.css";
+import "../styles/main.css";
 
-const UserForm = () => {
+const RestrationForm = () => {
   // Form submit handler
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     console.log("Form Data:", values);
@@ -29,7 +29,7 @@ const UserForm = () => {
 
   return (
     <div className="form-container">
-      <h1>User Registration Form</h1>
+      <h3>Registration Form</h3>
       <Formik
         initialValues={userRegistrationInitialValues}
         validationSchema={userRegistrationSchema}
@@ -37,7 +37,6 @@ const UserForm = () => {
       >
         {({ values, setFieldValue, isSubmitting, errors, touched }) => (
           <Form className="user-form">
-            {/* First Name */}
             <TextInput
               label="First Name"
               name="firstName"
@@ -47,7 +46,6 @@ const UserForm = () => {
               required
             />
 
-            {/* Last Name */}
             <TextInput
               label="Last Name"
               name="lastName"
@@ -72,8 +70,6 @@ const UserForm = () => {
               touched={touched.confirmPassword}
               required
             />
-
-            {/* Country Dropdown */}
             <SelectInput
               label="Country"
               name="country"
@@ -84,7 +80,6 @@ const UserForm = () => {
               required
             />
 
-            {/* Gender Radio Buttons */}
             <RadioGroup
               label="Gender"
               name="gender"
@@ -92,7 +87,6 @@ const UserForm = () => {
               required
             />
 
-            {/* Hobbies Checkboxes */}
             <CheckboxGroup
               label="Hobbies"
               name="hobbies"
@@ -100,7 +94,6 @@ const UserForm = () => {
               required
             />
 
-            {/* Skills Multiselect */}
             <MultiSelect
               label="Skills"
               name="skills"
@@ -113,7 +106,6 @@ const UserForm = () => {
               required
             />
 
-            {/* Date of Birth */}
             <DateInput
               label="Date of Birth"
               name="dateOfBirth"
@@ -122,7 +114,6 @@ const UserForm = () => {
               required
             />
 
-            {/* Mobile Number */}
             <TextInput
               label="Mobile Number"
               name="mobileNo"
@@ -133,7 +124,6 @@ const UserForm = () => {
               required
             />
 
-            {/* Aadhar Card Number */}
             <TextInput
               label="Aadhar Card Number"
               name="aadharCardNo"
@@ -144,7 +134,6 @@ const UserForm = () => {
               required
             />
 
-            {/* Submit Button */}
             <div className="form-group">
               <button
                 type="submit"
@@ -161,4 +150,4 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+export default RestrationForm;

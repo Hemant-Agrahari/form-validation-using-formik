@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 import { Field, ErrorMessage } from 'formik';
-import './FormFields.css';
+import '../../styles/main.css';
+
+/**
+ * 
+ * @param {string} label - The label for the password input
+ * @param {string} name - The name of the password input
+ * @param {string} placeholder - The placeholder for the password input
+ * @param {object} errors - The errors for the password input
+ * @param {object} touched - Whether the password input has been touched
+ * @param {boolean} required - Whether the password input is required
+ * @returns password input component with label, name, placeholder, errors, touched and required props
+ */
 
 const PasswordInput = ({ 
   label, 

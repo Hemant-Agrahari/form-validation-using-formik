@@ -1,7 +1,15 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
-import './FormFields.css';
+import '../../styles/main.css';
 
+/**
+ * 
+ * @param {string} label - The label for the checkbox group
+ * @param {string} name - The name of the checkbox group
+ * @param {object[]} options - The options for the checkbox group
+ * @param {boolean} required - Whether the checkbox group is required
+ * @returns checkbox group component with label, name, options and required props
+ */
 const CheckboxGroup = ({ 
   label, 
   name, 

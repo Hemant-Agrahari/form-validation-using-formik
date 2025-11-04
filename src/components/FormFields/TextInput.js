@@ -1,6 +1,19 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
-import './FormFields.css';
+import '../../styles/main.css';
+
+/**
+ * 
+ * @param {string} label - The label for the text input
+ * @param {string} name - The name of the text input
+ * @param {string} type - The type of the text input
+ * @param {string} placeholder - The placeholder for the text input
+ * @param {number} maxLength - The maximum length for the text input
+ * @param {object} errors - The errors for the text input
+ * @param {object} touched - Whether the text input has been touched
+ * @param {boolean} required - Whether the text input is required
+ * @returns text input component with label, name, type, placeholder, maxLength, errors, touched and required props
+ */
 
 const TextInput = ({ 
   label, 
