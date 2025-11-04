@@ -12,12 +12,14 @@ export {
 
 // Export all validation schemas
 export {
+  loginSchema,
   userRegistrationSchema,
   ValidationRules,
 } from './validationSchemas';
 
 // Export all initial values
 export {
+  loginInitialValues,
   userRegistrationInitialValues,
 } from './initialValues';
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import UserForm from './components/UserForm';
+import TabbedForms from './components/TabbedForms';
 
 function App() {
   return (
     <div className="App">
-      <UserForm />
+      <TabbedForms />
     </div>
   );
 }

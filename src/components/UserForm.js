@@ -1,13 +1,14 @@
-import React from 'react';
-import { Formik, Form } from 'formik';
+import React from "react";
+import { Formik, Form } from "formik";
 import {
   TextInput,
   SelectInput,
   RadioGroup,
   CheckboxGroup,
   MultiSelect,
-  DateInput
-} from './FormFields';
+  DateInput,
+  PasswordInput,
+} from "./FormFields";
 import {
   userRegistrationSchema,
   userRegistrationInitialValues,
@@ -15,14 +16,13 @@ import {
   GENDER_OPTIONS,
   HOBBY_OPTIONS,
   SKILL_OPTIONS,
-} from '../constants';
-import './UserForm.css';
+} from "../constants";
+import "./UserForm.css";
 
 const UserForm = () => {
-
   // Form submit handler
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    console.log('Form Data:', values);
+    console.log("Form Data:", values);
     setSubmitting(false);
     resetForm();
   };
@@ -54,6 +54,22 @@ const UserForm = () => {
               placeholder="Enter your last name"
               errors={errors.lastName}
               touched={touched.lastName}
+              required
+            />
+            <PasswordInput
+              label="Password"
+              name="password"
+              placeholder="Enter your password"
+              errors={errors.password}
+              touched={touched.password}
+              required
+            />
+            <PasswordInput
+              label="Confirm Password"
+              name="confirmPassword"
+              placeholder="Confirm your password"
+              errors={errors.confirmPassword}
+              touched={touched.confirmPassword}
               required
             />
 
@@ -130,8 +146,12 @@ const UserForm = () => {
 
             {/* Submit Button */}
             <div className="form-group">
-              <button type="submit" className="submit-btn" disabled={isSubmitting}>
-                {isSubmitting ? 'Submitting...' : 'Submit Form'}
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Submitting..." : "Submit Form"}
               </button>
             </div>
           </Form>
